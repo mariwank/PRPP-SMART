@@ -6,7 +6,7 @@ The code in this repository is in active development. To view or use stable code
 - [v1.0.0](../../releases/tag/v1.0.0): Release accompanying initial submission to _Statistical Methods in Medical Research_.
 
 ## File Descriptions
-- [DataGeneration.R](DataGeneration.R): Main function used to generate data from a two-stage PRPP-SMART with a binary outcome.
+- [DataGeneration.R](DataGeneration.R): Main function used to generate data from a two-stage PRPP-SMART with binary end-of-stage outcomes.
 - [resultFunctions.R](resultFunctions.R): Helper functions for compiling results and tables
 
 ## Folder Descriptions
