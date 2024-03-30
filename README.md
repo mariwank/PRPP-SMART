@@ -7,6 +7,8 @@ The code in this repository is in active development. To view or use stable code
 
 ## File Descriptions
 - [DataGeneration.R](DataGeneration.R): Main function used to generate data from a two-stage PRPP-SMART with binary end-of-stage outcomes.
+- [Frequentist_WRRM.R](Frequentist_WRRM.R): Simulation code for frequentist WRRM under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)).
+- [Bayesian_WRRM.R](Bayesian_WRRM.R): Main function used to generate data from a two-stage PRPP-SMART with binary end-of-stage outcomes.
 - [resultFunctions.R](resultFunctions.R): Helper functions for compiling results and tables
 
 ## Folder Descriptions
