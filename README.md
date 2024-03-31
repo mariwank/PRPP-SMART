@@ -9,7 +9,7 @@ The code in this repository is in active development. To view or use stable code
 - [DataGeneration.R](DataGeneration.R): Main function used to generate data from a two-stage PRPP-SMART with binary end-of-stage outcomes.
 - [Frequentist_WRRM.R](Frequentist_WRRM.R): Simulation code for frequentist WRRMs under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). 
 - [Bayesian_WRRM.R](Bayesian_WRRM.R): Simulation code for Bayesian WRRMs under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). Note, Bayesian simulations are reccomened to be run on a high-performance cluster rather than a laptop. 
-- [resultFunctions.R](resultFunctions.R): Helper functions for compiling results and tables
+- [Result_Figures.R](Result_Figures.R): Code for creating figures in manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). 
 
 ## Folder Descriptions
 - The [WilliamsSavitsky2021_Functions](WilliamsSavitsky2021_Functions) folder contains the functions to implement the method outlined in Williams, M. R., and Savitsky, T. D. (2021) Uncertainty Estimation for Pseudo-Bayesian Inference Under Complex Sampling, https://doi.org/10.1111/insr.12376. Note, these functions are also available in the r package [csSampling](https://github.com/RyanHornby/csSampling). 
