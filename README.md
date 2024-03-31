@@ -8,7 +8,7 @@ The code in this repository is in active development. To view or use stable code
 ## File Descriptions
 - [DataGeneration.R](DataGeneration.R): Main function used to generate data from a two-stage PRPP-SMART with binary end-of-stage outcomes.
 - [Frequentist_WRRM.R](Frequentist_WRRM.R): Simulation code for frequentist weighted and replicated regression models (WRRMs) to estimate embedded dynamic treatment regimes (DTRs) under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). 
-- [Bayesian_WRRM.R](Bayesian_WRRM.R): Simulation code for Bayesian weighted and replicated regression models (WRRMs) to estimate embedded dyamic treatment regimes (DTRs) under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). Note, Bayesian simulations are reccomened to be run on a high-performance cluster rather than a laptop. 
+- [Bayesian_WRRM.R](Bayesian_WRRM.R): Simulation code for Bayesian weighted and replicated regression models (WRRMs) to estimate embedded dynamic treatment regimes (DTRs) under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). Note, Bayesian simulations are reccomened to be run on a high-performance cluster rather than a laptop. 
 - [Result_Figures.R](Result_Figures.R): Code for creating figures in manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). 
 
 ## Folder Descriptions
