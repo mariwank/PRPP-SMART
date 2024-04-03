@@ -10,7 +10,7 @@ source("DataGeneration.R")
 
 ## USER SETTINGS:
 # specify what scenario you want to run (1,2,3)
-scenario <- 3
+scenario <- 1
 
 if (scenario == 1){
   pNP1=0.50 #  desired proportion of individuals expressing No Preference in stage 1
@@ -27,10 +27,6 @@ if (scenario == 1){
   pNP2=1/3
   n.sim <- 553 # number of simulations to get 500
   
-} else if (scenario == 4){
-  pNP1=0.2
-  pNP2=0.2
-  n.sim <- 80371 # number of simulations to get 500
 }
 
 # Specify number of subjects in trial
