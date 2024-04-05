@@ -3,12 +3,13 @@ Companion code for "A Partially Randomized Patient Preference, Sequential, Multi
 
 ## Usage Note
 The code in this repository is in active development. To view or use stable code, see the appropriate releases:
-- [v1.0.0](../../releases/tag/v1.0.0): Release accompanying initial submission to _Statistical Methods in Medical Research_.
+- [v1.0.0](../../releases/tag/v1.0.0): Release accompanying initial submission to _Statistics in Medicine_.
 
 ## File Descriptions
 - [DataGeneration.R](DataGeneration.R): Main function used to generate data from a two-stage PRPP-SMART with binary end-of-stage outcomes.
 - [Frequentist_WRRM.R](Frequentist_WRRM.R): Simulation code for frequentist weighted and replicated regression models (WRRMs) to estimate embedded dynamic treatment regimes (DTRs) in PPRPP-SMART under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). 
-- [Bayesian_WRRM.R](Bayesian_WRRM.R): Simulation code for Bayesian weighted and replicated regression models (WRRMs) to estimate embedded dynamic treatment regimes (DTRs) in PRPP-SMART under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). Note, Bayesian simulations are reccomened to be run on a high-performance cluster rather than a laptop. 
+- [Bayesian_WRRM.R](Bayesian_WRRM.R): Simulation code for Bayesian weighted and replicated regression models (WRRMs) to estimate embedded dynamic treatment regimes (DTRs) in PRPP-SMART under all scenarios considered in the manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). Note, Bayesian simulations are reccomened to be run on a high-performance cluster rather than a laptop.
+- [Bayesian_WRRM_Sigma2s.R](Bayesian_WRRM_Sigma2s.R): Simulation code to assess sensitivity to our prior specifications in the Bayesian weighted and replicated regression models (WRRMs) to estimate embedded dynamic treatment regimes (DTRs) in PRPP-SMART. Note, Bayesian simulations are reccomened to be run on a high-performance cluster rather than a laptop.
 - [Result_Figures.R](Result_Figures.R): Code for creating figures in manuscript ([ArXiv](https://arxiv.org/abs/1810.13094)). 
 
 ## Folder Descriptions
