@@ -277,7 +277,7 @@ generate_data <- function(N, pNP1, pTheta_A, pNP2, pTheta_C, pi_A, pi_B, pi_A1, 
   ### CHECKS ###
   #sum(prop.table(table(S2_Preference))) # check to make sure prob_C, prob_D, prob_NP2 sum to 1
   # prop.table(table(S2_Preference)) # check if observed proportions close to targets
-  # length(which(S2_Preference == "C)) / length(which(S2_Preference == "C" | S2_Preference == "D")) # should be close to pTheta_C
+  # length(which(S2_Preference == "C")) / length(which(S2_Preference == "C" | S2_Preference == "D")) # should be close to pTheta_C
   
   
   # create final stage 2 preference variable 
@@ -472,31 +472,39 @@ generate_data <- function(N, pNP1, pTheta_A, pNP2, pTheta_C, pi_A, pi_B, pi_A1, 
   ## Replicate and weight Data - need four datasets because responders consistent with four DTRs
   # get empirical proportions for weight calculation
   pNP1_hat <- sum(data_output_relabel$P1 == 0)/nrow(data_output_relabel)
-  pNP2_hat <- sum(data_output_relabel$P2 == 0 & data_output_relabel$R == 0)/sum(data_output_relabel$R == 0)
-  pTheta_A_hat <- sum(data_output_relabel$T1 == 1 & data_output_relabel$P1 == 1) / sum(data_output_relabel$P1 == 1)
-  pTheta_C_hat <- sum(data_output_relabel$T2 == 1 & data_output_relabel$R == 0 & data_output_relabel$P2 == 1) / sum(data_output_relabel$P2 == 1)
+  pNP2_P1_1_hat <- sum(data_output_relabel$P2 == 0 & data_output_relabel$R == 0 & data_output_relabel$P1 == 1)/sum(data_output_relabel$R == 0 & data_output_relabel$P1 == 1)
+  pNP2_P1_0_hat <- sum(data_output_relabel$P2 == 0 & data_output_relabel$R == 0 & data_output_relabel$P1 == 0)/sum(data_output_relabel$R == 0 & data_output_relabel$P1 == 0)
+  pThetaA_hat <- sum(data_output_relabel$T1 == 1 & data_output_relabel$P1 == 1) / sum(data_output_relabel$P1 == 1)
+  pTheta2_P1_1_hat <- sum(data_output_relabel$T2 == 1 & data_output_relabel$R == 0 & data_output_relabel$P2 == 1 & data_output_relabel$P1 == 1) / sum(data_output_relabel$P2 == 1 & data_output_relabel$R == 0 & data_output_relabel$P1 == 1 )
+  pTheta2_P1_0_hat <- sum(data_output_relabel$T2 == 1 & data_output_relabel$R == 0 & data_output_relabel$P2 == 1 & data_output_relabel$P1 == 0) / sum(data_output_relabel$P2 == 1 & data_output_relabel$R == 0 & data_output_relabel$P1 == 0)
+  
+  # Inverse Probability of Treatment Weights 
+  # P(P1)*P(T1 | P1)*P(P2 | T1, P1)*P(T2 | P1, T1, P2)
+  # Since the generation of P2 and T2 only depends on P1, this simplifies here to
+  # P(P1)*P(T1 | P1)*P(P2 | P1)*P(T2 | P1)
   
   data_output_relabel$w=rep(0)
   data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0A")] <- 1/(pNP1_hat*0.5)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0C1")] <- 1/(pNP1_hat*0.5*(1-pNP2_hat)*pTheta_C_hat)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0D1")] <- 1/(pNP1_hat*0.5*(1-pNP2_hat)*(1-pTheta_C_hat))
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0C0")] <- 1/(pNP1_hat*0.5*pNP2_hat*0.5)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0D0")] <- 1/(pNP1_hat*0.5*pNP2_hat*0.5)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0C1")] <- 1/(pNP1_hat*0.5*(1-pNP2_P1_0_hat)*pTheta2_P1_0_hat)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0D1")] <- 1/(pNP1_hat*0.5*(1-pNP2_P1_0_hat)*(1-pTheta2_P1_0_hat))
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0C0")] <- 1/(pNP1_hat*0.5*pNP2_P1_0_hat*0.5)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A0D0")] <- 1/(pNP1_hat*0.5*pNP2_P1_0_hat*0.5)
   data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0B")] <- 1/(pNP1_hat*0.5)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0C1")] <- 1/(pNP1_hat*0.5*(1-pNP2_hat)*pTheta_C_hat)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0D1")] <- 1/(pNP1_hat*0.5*(1-pNP2_hat)*(1-pTheta_C_hat))
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0C0")] <- 1/(pNP1_hat*0.5*pNP2_hat*0.5)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0D0")] <- 1/(pNP1_hat*0.5*pNP2_hat*0.5)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1B")] <- 1/((1-pNP1_hat)*(1-pTheta_A_hat))
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1C1")] <- 1/((1-pNP1_hat)*(1-pTheta_A_hat)*(1-pNP2_hat)*pTheta_C_hat)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1D1")] <- 1/((1-pNP1_hat)*(1-pTheta_A_hat)*(1-pNP2_hat)*(1-pTheta_C_hat))
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1C0")] <- 1/((1-pNP1_hat)*(1-pTheta_A_hat)*pNP2_hat*0.5)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1D0")] <- 1/((1-pNP1_hat)*(1-pTheta_A_hat)*pNP2_hat*0.5)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1A")] <- 1/((1-pNP1_hat)*pTheta_A_hat)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1C1")] <- 1/((1-pNP1_hat)*pTheta_A_hat*(1-pNP2_hat)*pTheta_C_hat)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1D1")] <- 1/((1-pNP1_hat)*pTheta_A_hat*(1-pNP2_hat)*(1-pTheta_C_hat))
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1C0")] <-1/((1-pNP1_hat)*pTheta_A_hat*pNP2_hat*0.5)
-  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1D0")] <- 1/((1-pNP1_hat)*pTheta_A_hat*pNP2_hat*0.5)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0C1")] <- 1/(pNP1_hat*0.5*(1-pNP2_P1_0_hat)*pTheta2_P1_0_hat)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0D1")] <- 1/(pNP1_hat*0.5*(1-pNP2_P1_0_hat)*(1-pTheta2_P1_0_hat))
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0C0")] <- 1/(pNP1_hat*0.5*pNP2_P1_0_hat*0.5)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B0D0")] <- 1/(pNP1_hat*0.5*pNP2_P1_0_hat*0.5)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1B")] <- 1/((1-pNP1_hat)*(1-pThetaA_hat))
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1C1")] <- 1/((1-pNP1_hat)*(1-pThetaA_hat)*(1-pNP2_P1_1_hat)*pTheta2_P1_1_hat)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1D1")] <- 1/((1-pNP1_hat)*(1-pThetaA_hat)*(1-pNP2_P1_1_hat)*(1-pTheta2_P1_1_hat))
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1C0")] <- 1/((1-pNP1_hat)*(1-pThetaA_hat)*pNP2_P1_1_hat*0.5)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="B1D0")] <- 1/((1-pNP1_hat)*(1-pThetaA_hat)*pNP2_P1_1_hat*0.5)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1A")] <- 1/((1-pNP1_hat)*pThetaA_hat)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1C1")] <- 1/((1-pNP1_hat)*pThetaA_hat*(1-pNP2_P1_1_hat)*pTheta2_P1_1_hat)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1D1")] <- 1/((1-pNP1_hat)*pThetaA_hat*(1-pNP2_P1_1_hat)*(1-pTheta2_P1_1_hat))
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1C0")] <-1/((1-pNP1_hat)*pThetaA_hat*pNP2_P1_1_hat*0.5)
+  data_output_relabel$w[which(data_output_relabel$Treatment_Path=="A1D0")] <- 1/((1-pNP1_hat)*pThetaA_hat*pNP2_P1_1_hat*0.5)
+  
   
   # 1st dataset of responders setting T2=1, P2=0
   datareps1 <- data_output_relabel[data_output_relabel$R==1,] 
