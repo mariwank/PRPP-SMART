@@ -113,7 +113,6 @@ plot_df_freq <- rbind(plot_df1_freq,
                            plot_df3_freq,
                            plot_df3t_freq)
 
-plot_df_freq$rMSE <- round(plot_df_freq$rMSE, 4)                             
 plot_df_freq$abs_bias <- abs(plot_df_freq$Bias)                            
 plot_df_freq$Coverage <- round(plot_df_freq$Coverage,2)
 
@@ -188,21 +187,20 @@ plot_df_bayes <- rbind(plot_df1_bayes,
                             plot_df3t_bayes)
 
 
-plot_df_bayes$rMSE <- round(plot_df_bayes$rMSE, 4)                             
 plot_df_bayes$abs_bias <- abs(plot_df_bayes$Bias)                            
 plot_df_bayes$Coverage <- round(plot_df_bayes$Coverage,2)
 
 
 ######################### PLOTS ################################
 
-## Frequentist WRRM No Preference DTR Result Plots
+## Frequentist WRRM Indifference DTR Result Plots
 
 # Absolute Bias
 ggbarplot(plot_df_freq, x = "DTR", y = "abs_bias", fill = "Method",
           color = "white", sorting = "none",          
           palette = "grey", rotate = FALSE, position = position_dodge(0.7), 
           x.text.angle = 90, facet.by = "Scenario", ggtheme = theme_pubr(),
-          main = "Absolute Bias of No Preference DTRs per Scenario", subtitle = "Frequentist Estimation",ylab = "Absolute Bias", 
+          main = "Absolute Bias of Indifference DTRs per Scenario", subtitle = "Frequentist Estimation",ylab = "Absolute Bias", 
           panel.labs = list(Scenario = c("Scenario 1", "Scenario 2", "Scenario 3"))) + 
   scale_x_discrete(labels = c("AAC", "AAD", "BBC", "BBD")) +
   theme(plot.title=element_text(size=14), axis.text=element_text(size=14), axis.title=element_text(size=15), legend.title=element_text(size=14), legend.text=element_text(size=14), strip.text=element_text(size=14))
@@ -213,20 +211,20 @@ ggbarplot(plot_df_freq, x = "DTR", y = "rMSE", fill = "Method",
           color = "white", sorting = "none",          
           palette = "grey", rotate = FALSE, position = position_dodge(0.7), 
           x.text.angle = 90, facet.by = "Scenario", ggtheme = theme_pubr(),
-          main = "rMSE of No Preference DTRs per Scenario", subtitle = "Frequentist Estimation", ylab = "rMSE", 
+          main = "rMSE of Indifference DTRs per Scenario", subtitle = "Frequentist Estimation", ylab = "rMSE", 
           panel.labs = list(Scenario = c("Scenario 1", "Scenario 2", "Scenario 3"))) + 
   scale_x_discrete(labels = c("AAC", "AAD", "BBC", "BBD")) +
   theme(plot.title=element_text(size=14), axis.text=element_text(size=14), axis.title=element_text(size=15), legend.title=element_text(size=14), legend.text=element_text(size=14), strip.text=element_text(size=14))
 
 
-## Bayesian WRRM No Preference DTR Result Plots
+## Bayesian WRRM Indifference DTR Result Plots
 
 # Absolute Bias
 ggbarplot(plot_df_bayes, x = "DTR", y = "abs_bias", fill = "Method",
           color = "white", sorting = "none",          
           palette = "grey", rotate = FALSE, position = position_dodge(0.7), 
           x.text.angle = 90, facet.by = "Scenario", ggtheme = theme_pubr(),
-          main = "Absolute Bias of No Preference DTRs per Scenario", subtitle = "Bayesian Estimation",ylab = "Absolute Bias", 
+          main = "Absolute Bias of Indifference DTRs per Scenario", subtitle = "Bayesian Estimation",ylab = "Absolute Bias", 
           panel.labs = list(Scenario = c("Scenario 1", "Scenario 2", "Scenario 3"))) + 
   scale_x_discrete(labels = c("AAC", "AAD", "BBC", "BBD")) +
   theme(plot.title=element_text(size=14), axis.text=element_text(size=14), axis.title=element_text(size=15), legend.title=element_text(size=14), legend.text=element_text(size=14), strip.text=element_text(size=14))
@@ -237,7 +235,7 @@ ggbarplot(plot_df_bayes, x = "DTR", y = "rMSE", fill = "Method",
           color = "white", sorting = "none",          
           palette = "grey", rotate = FALSE, position = position_dodge(0.7), 
           x.text.angle = 90, facet.by = "Scenario", ggtheme = theme_pubr(),
-          main = "rMSE of No Preference DTRs per Scenario", subtitle = "Bayesian Estimation", ylab = "rMSE", 
+          main = "rMSE of Indifference DTRs per Scenario", subtitle = "Bayesian Estimation", ylab = "rMSE", 
           panel.labs = list(Scenario = c("Scenario 1", "Scenario 2", "Scenario 3"))) + 
   scale_x_discrete(labels = c("AAC", "AAD", "BBC", "BBD")) +
   theme(plot.title=element_text(size=14), axis.text=element_text(size=14), axis.title=element_text(size=15), legend.title=element_text(size=14), legend.text=element_text(size=14), strip.text=element_text(size=14))
