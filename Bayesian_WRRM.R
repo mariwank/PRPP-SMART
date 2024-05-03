@@ -518,8 +518,8 @@ DTR_bias_org = round(DTR_hat_avg_org - expected_pref,4)
 DTR_bias_adj = round(DTR_hat_avg_adj - expected_pref,4)
 
 # calculate rMSE
-rMSE_DTR_org <- sqrt(DTR_avg_sd_org^2 + DTR_bias_org^2)
-rMSE_DTR_adj <- sqrt(DTR_avg_sd_adj^2 + DTR_bias_adj^2)
+rMSE_DTR_org <- sqrt(DTR_sd_hat_org^2 + DTR_bias_org^2)
+rMSE_DTR_adj <- sqrt(DTR_sd_hat_adj^2 + DTR_bias_adj^2)
 
 DTR_results_tbl <- data.frame(DTR=DTR,
                               True_DTR=expected_pref,
@@ -691,8 +691,8 @@ DTR_bias_org_t = round(DTR_hat_avg_org_t - expected_pref[1:4],4)
 DTR_bias_adj_t = round(DTR_hat_avg_adj_t - expected_pref[1:4],4)
 
 # calculate rMSE
-rMSE_DTR_org_t <- sqrt(DTR_avg_sd_org_t^2 + DTR_bias_org_t^2)
-rMSE_DTR_adj_t <- sqrt(DTR_avg_sd_adj_t^2 + DTR_bias_adj_t^2)
+rMSE_DTR_org_t <- sqrt(DTR_sd_hat_org_t^2 + DTR_bias_org_t^2)
+rMSE_DTR_adj_t <- sqrt(DTR_sd_hat_adj_t^2 + DTR_bias_adj_t^2)
 
 DTR_results_tbl_t <- data.frame(DTR=DTR_t,
                                 True_DTR=expected_pref[1:4],

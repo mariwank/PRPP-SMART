@@ -15,22 +15,23 @@ scenario <- 1
 if (scenario == 1){
   pNP1=0.50 #  desired proportion of individuals expressing No Preference in stage 1
   pNP2=0.50 # desired proportion of patients expressing No Preference in stage 2 (among non-responders)
-  n.sim <- 527 # number of simulations to get 500
+  n.sim <- 527 # number of simulations to get 500 c1 = 0.3 
+  #n.sim <- 528 # number of simulations to get 500 c1 = -0.1
   
 } else if (scenario == 2){
   pNP1=1/3
   pNP2=1/3
-  n.sim <- 734 # number of simulations to get 500
-  
+  n.sim <- 734 # number of simulations to get 500 c1 = 0.3 
+  #n.sim <- 622 # number of simulations to get 500 c1 = -0.1
 }  else if (scenario == 3){
   pNP1=0.5
   pNP2=1/3
-  n.sim <- 553 # number of simulations to get 500
-  
+  n.sim <- 553 # number of simulations to get 500 c1 = 0.3 
+  #n.sim <- 600 # number of simulations to get 500 c1 = -0.1
 }
 
 # Specify number of subjects in trial
-N <- 500
+N <- 1000
 
 # Specify theta targets
 pTheta_A=0.4 # desired proportion of individuals expressing preference for treatment A among those with a preference in stage 1
@@ -189,8 +190,7 @@ for (i in 1:n.sim){
   df <- data[[2]] # data for prpp_smart full analysis replicated and has calculated weights
   
   df <-df[order(df$id),] # sort data by id for gee statement
-  
-  
+
   ## create traditional analysis data ## 
   
   # pull out randomized only subjects
@@ -521,7 +521,7 @@ for(i in 1:16){
 DTR_bias = round(DTR_hat_avg - expected_pref,4)
 
 # calculate rMSE
-rMSE_DTR <- sqrt(DTR_avg_sd^2 + DTR_bias^2)
+rMSE_DTR <- sqrt(DTR_sd_hat^2 + DTR_bias^2)
 
 
 DTR_results_tbl <- data.frame(DTR=DTR,True_DTR=expected_pref,
@@ -673,7 +673,7 @@ for(i in 1:4){
 DTR_bias_t = round(DTR_hat_avg_t - expected_pref[1:4],4)
 
 # calculate rMSE
-rMSE_DTR_t <- sqrt(DTR_avg_sd_t^2 + DTR_bias_t^2)
+rMSE_DTR_t <- sqrt(DTR_sd_hat_t^2 + DTR_bias_t^2)
 
 DTR_results_tbl_t <- data.frame(DTR=DTR_t,
                                 True_DTR=expected_pref[1:4],
