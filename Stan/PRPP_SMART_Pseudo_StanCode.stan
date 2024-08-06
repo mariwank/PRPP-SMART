@@ -3,7 +3,7 @@
 // to estimate DTRs from a PRPP-SMART.
 // Note: this Stan code is cosistent with
 // PRPP-SMART data of the form described in
-// Supplementary Material 3: Example R Code
+// Supplementary Material 4: Example R Code
 // in the paper titled "A Partially Randomized Patient Preference, Sequential,
 // Multiple-Assignment, Randomized Trial Design Analyzed via Weighted and
 // Replicated Frequentist and Bayesian Methods"
