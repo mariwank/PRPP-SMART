@@ -15,4 +15,4 @@ The code in this repository is in active development. To view or use stable code
 ## Folder Descriptions
 - The [WilliamsSavitsky2021_Functions](WilliamsSavitsky2021_Functions) folder contains the functions to implement the method outlined in Williams, M. R., and Savitsky, T. D. (2021) Uncertainty Estimation for Pseudo-Bayesian Inference Under Complex Sampling, https://doi.org/10.1111/insr.12376. Note, these functions are also available in the r package [csSampling](https://github.com/RyanHornby/csSampling). 
 
-- The [Stan](Stan) folder contains the stan models used to perform the full and traditional Bayesian weighted and replicated regression models (WRRMs) outlined in the manuscript as well as a pseudo stan script to help users implement the Bayesian WRRM. 
+- The [Stan](Stan) folder contains the stan models used to perform the full and traditional Bayesian weighted and replicated regression models (WRRMs) outlined in the manuscript as well as a [pseudo stan script](PRPP_SMART_Pseudo_StanCode.stan) to help users implement the Bayesian WRRM. 
