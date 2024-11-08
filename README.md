@@ -3,7 +3,7 @@ Companion code for "A Partially Randomized Patient Preference, Sequential, Multi
 
 ## Usage Note
 The code in this repository is in active development. To view or use stable code, see the appropriate releases:
-- [v1.0.0](../../releases/tag/v1.0.0): Release accompanying revision submission to _Statistics in Medicine_.
+- [v1.0.0](../../releases/tag/v1.0.0): Release accompanying accecptance to _Statistics in Medicine_.
 
 ## File Descriptions
 - [DataGeneration.R](DataGeneration.R): Main function used to generate data from a two-stage PRPP-SMART with binary end-of-stage outcome.
