@@ -1,5 +1,5 @@
 # PRPP-SMART
-Companion code for "A Partially Randomized Patient Preference, Sequential, Multiple-Assignment, Randomized Trial Design Analyzed via Weighted and Replicated Frequentist and Bayesian Methods”.
+Companion code for ["A Partially Randomized Patient Preference, Sequential, Multiple-Assignment, Randomized Trial Design Analyzed via Weighted and Replicated Frequentist and Bayesian Methods”](http://doi.org/10.1002/sim.10276).
 
 ## Usage Note
 The code in this repository is in active development. To view or use stable code, see the appropriate releases:
